@@ -120,7 +120,7 @@ const renderGoods = (arr) => {
 
   const numTd = tableBody.querySelectorAll('.table__cell_num');
   console.log('numTd: ', numTd);
-  let n = 2;
+  let n = 1;
   numTd.forEach((i) => {
     i.textContent = n++;
   });
