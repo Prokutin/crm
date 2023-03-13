@@ -67,7 +67,7 @@ const createRow = ({id, title, price, category, count, units}) => {
   const tr = document.createElement('tr');
 
   const tdNumber = document.createElement('td');
-  tdNumber.classList.add('table__cell_num');
+  tdNumber.classList.add('table__cell','table__cell_num');
 
   const tdTitle = document.createElement('td');
   tdTitle.classList.add('table__cell', 'table__cell_left', 'table__cell_name');
@@ -109,7 +109,6 @@ const createRow = ({id, title, price, category, count, units}) => {
   tdButtun.append(btnPic, btnEdit, btnDel);
 
   tr.append(tdNumber, tdTitle, tdCategory, tdUnits, tdCount, tdPrice, tdStrTotal, tdButtun);
-  console.log('рендер таблицв');
   return tr;
 }
 
