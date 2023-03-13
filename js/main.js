@@ -58,8 +58,29 @@ const goods = [
   }
 ]
 
-const modalOverlay = document.querySelector('.overlay');
-modalOverlay.classList.remove('active');
+const overlay = document.querySelector('.overlay');
+overlay.classList.remove('active');
+const btnAddItem = document.querySelector('.panel__add-goods');
+const overlayModal = document.querySelector('.overlay__modal');
+const modalClose = document.querySelector('.modal__close');
+
+
+btnAddItem.addEventListener('click', () =>{
+  overlay.classList.add('active');
+});
+
+overlayModal.addEventListener('click' , event =>{
+  event.stopImmediatePropagation()
+});
+
+
+overlay.addEventListener('click' , () =>{
+  overlay.classList.remove('active')
+});
+
+modalClose.addEventListener('click' , () =>{
+  overlay.classList.remove('active')
+})
 
 const tableBody = document.querySelector('.table__body');
 
@@ -114,11 +135,10 @@ const createRow = ({id, title, price, category, count, units}) => {
 
 const renderGoods = (arr) => {
   const allRow = arr.map(createRow);
-  console.log('allRow: ', allRow);
   tableBody.append(...allRow);
 
   const numTd = tableBody.querySelectorAll('.table__cell_num');
-  console.log('numTd: ', numTd);
+
   let n = 1;
   numTd.forEach((i) => {
     i.textContent = n++;
