@@ -153,9 +153,7 @@ tableBody.addEventListener('click', e => {
     const arrID = (goods.find(item => item.id = strID).id) - 1;
     goods.splice(arrID, 1);
   }
-
-
-
+  
   console.log('goods: ', goods);
 });
 
