@@ -57,6 +57,7 @@ const goods = [
     }
   }
 ]
+console.log('goods: ', goods);
 
 const overlay = document.querySelector('.overlay');
 overlay.classList.remove('active');
@@ -69,24 +70,21 @@ btnAddItem.addEventListener('click', () =>{
   overlay.classList.add('active');
 });
 
-overlayModal.addEventListener('click' , event =>{
-  event.stopImmediatePropagation()
+overlay.addEventListener('click' , e =>{
+  const target = e.target;
+  if (target === overlay || target.closest('.modal__close')) {
+    overlay.classList.remove('active');
+  }
 });
 
 
-overlay.addEventListener('click' , () =>{
-  overlay.classList.remove('active')
-});
-
-modalClose.addEventListener('click' , () =>{
-  overlay.classList.remove('active')
-})
 
 const tableBody = document.querySelector('.table__body');
 
 const createRow = ({id, title, price, category, count, units}) => {
   const tr = document.createElement('tr');
-
+  tr.classList.add('strItem');
+  tr.dataset.id = id;
   const tdNumber = document.createElement('td');
   tdNumber.classList.add('table__cell','table__cell_num');
 
@@ -145,6 +143,21 @@ const renderGoods = (arr) => {
   });
 };
 
+tableBody.addEventListener('click', e => {
+
+  const target = e.target;
+
+  if (target.closest('.table__btn_del')) {
+    target.closest('.strItem').remove();
+    const strID = target.closest('.strItem').dataset.id;
+    const arrID = (goods.find(item => item.id = strID).id) - 1;
+    goods.splice(arrID, 1);
+  }
+
+
+
+  console.log('goods: ', goods);
+});
 
 renderGoods(goods);
 
